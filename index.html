@@ -8,13 +8,28 @@
     <script src="main.js" async></script>
   </head>
 <body>
-  <h1>Forbes Library</h1>
-  <div id="news">
-    <h3>News from Forbes Library</h3>
-    <p id="news-placeholder">
-      <i class="spinner"></i>
-      loading news
-    </p>
-  </div>
+  <input id="navigation-toggle" type="checkbox">
+  <header id="top-header">
+    <label for="navigation-toggle" class="menu-hamburger">
+      <span id="navigation-toggle-label">show/hide navigation</span>
+    </label>
+    <h1>Forbes Library</h1>
+  </header>
+  <nav id="main-navigation">
+    <ul>
+      <li>Hours</li>
+      <li>Location</li>
+      <li>Contact</li>
+    </ul>
+  </nav>
+  <main id="content">
+    <div id="news">
+      <h3>News from Forbes Library</h3>
+      <p id="news-placeholder">
+        <i class="spinner"></i>
+        loading news
+      </p>
+    </div>
+  </main>
 </body>
 </html>
