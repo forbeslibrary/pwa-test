@@ -2,7 +2,8 @@ var cacheName = 'forbeslibrary-v1';
 var filesToCache = [
   './index.html',
   './style.css',
-  './main.js'
+  './main.js',
+  'https://fonts.googleapis.com/css?family=Lato'
 ];
 
 self.addEventListener('install', function(e) {
