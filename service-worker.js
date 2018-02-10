@@ -1,8 +1,8 @@
 var cacheName = 'forbeslibrary-v1';
 var filesToCache = [
-  'index.html',
-  'style.css',
-  'main.js'
+  './index.html',
+  './style.css',
+  './main.js'
 ];
 
 self.addEventListener('install', function(e) {
