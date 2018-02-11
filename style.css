@@ -51,6 +51,7 @@ body {
 
 #main-navigation {
   border-right: solid black 0.25em;
+  box-shadow: 0 0 5px black
 }
 
 #main-navigation ul {
@@ -76,6 +77,9 @@ body {
 }
 #menu-item-coolidge a {
   font-size: 0.75em;
+}
+#menu-item-coolidge img {
+  margin-bottom: 0.5em;
 }
 
 #top-header {
