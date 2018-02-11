@@ -49,12 +49,41 @@ body {
   margin: 0 0.5em;
 }
 
+#main-navigation {
+  border-right: solid black 0.25em;
+}
+
+#main-navigation ul {
+  margin: 0;
+  padding: 0;
+}
+
+#main-navigation li {
+  display: block;
+  margin: 0;
+  font-size: 1.5em;
+  border-bottom: double 0.2em #722327;
+}
+
+#menu-item-hours,
+#menu-item-location,
+#menu-item-contact {
+  padding: 0.25em;
+}
+#menu-item-coolidge {
+  text-align: center;
+  padding-bottom: 0.5em;
+}
+#menu-item-coolidge a {
+  font-size: 0.75em;
+}
+
 #top-header {
   z-index: 100;
   position: fixed;
   top:0;
   left:0;
-  height: 2.5em;
+  height: 3em;
   width: 100%;
   background-color: #722327;
   color: white;
@@ -64,11 +93,12 @@ body {
   display: inline-block;
   margin: 0;
   vertical-align: top;
+  line-height: 1.4;
 }
 
 #content {
   position: absolute;
-  top: 2.5em;
+  top: 3em;
 }
 
 #navigation-toggle~#main-navigation {
@@ -79,8 +109,9 @@ body {
   display: block;
   position: absolute;
   left: 0;
-  top: 100px;
+  top: 3em;
   width: 250px;
+  height: 100%;
 }
 
 #navigation-toggle:checked~#content {
