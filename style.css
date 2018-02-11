@@ -4,6 +4,12 @@ body {
   margin: 1em;
 }
 
+@media (min-width: 400px) {
+  body {
+    font-size: 16px;
+  }
+}
+
 @keyframes spinner {
   to {transform: rotate(360deg);}
 }
@@ -50,7 +56,6 @@ body {
   left:0;
   height: 2.5em;
   width: 100%;
-  font-size: 1.5 em;
   background-color: #722327;
   color: white;
 }
