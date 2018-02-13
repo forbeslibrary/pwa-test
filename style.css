@@ -50,8 +50,8 @@ body {
 }
 
 #main-navigation {
-  border-right: solid black 0.25em;
-  box-shadow: 0 0 5px black
+  border-right: solid #722327 0.2em;
+  box-shadow: 0 0 0.5em #722327;
 }
 
 #main-navigation ul {
@@ -71,14 +71,17 @@ body {
 #menu-item-contact {
   padding: 0.25em;
 }
-#menu-item-coolidge {
+#menu-item-coolidge,
+#menu-item-digital-gallery {
   text-align: center;
   padding-bottom: 0.5em;
 }
-#menu-item-coolidge a {
+#menu-item-coolidge a,
+#menu-item-digital-gallery a {
   font-size: 0.75em;
 }
-#menu-item-coolidge img {
+#menu-item-coolidge img,
+#menu-item-digital-gallery img {
   margin-bottom: 0.5em;
 }
 
