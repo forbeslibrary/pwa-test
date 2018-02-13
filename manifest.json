@@ -3,9 +3,14 @@
   "name": "Forbes Library Progressive Web App Test",
   "icons": [
     {
-      "src": "img/fl-favicon-large.png",
+      "src": "img/fl-favicon-114x144.png",
       "type": "image/png",
       "sizes": "114x114"
+    },
+    {
+      "src": "img/fl-favicon-144x144.png",
+      "type": "image/png",
+      "sizes": "144x144"
     }
   ],
   "theme_color": "#722327",
