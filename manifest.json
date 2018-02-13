@@ -15,5 +15,5 @@
     }
   ],
   "theme_color": "#722327",
-  "start_url": "/?utm_source=homescreen"
+  "start_url": "/pwa-test/?utm_source=homescreen"
 }
