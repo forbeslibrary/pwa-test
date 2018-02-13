@@ -1,0 +1,13 @@
+{
+  "short_name": "Forbes Library β",
+  "name": "Forbes Library Progressive Web App Test",
+  "icons": [
+    {
+      "src": "img/fl-favicon-large.png",
+      "type": "image/png",
+      "sizes": "114x114"
+    }
+  ],
+  "theme_color": "#722327",
+  "start_url": "/?utm_source=homescreen"
+}
