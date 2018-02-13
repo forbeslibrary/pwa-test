@@ -3,7 +3,7 @@
   "name": "Forbes Library Progressive Web App Test",
   "icons": [
     {
-      "src": "img/fl-favicon-114x144.png",
+      "src": "img/fl-favicon-114x114.png",
       "type": "image/png",
       "sizes": "114x114"
     },
