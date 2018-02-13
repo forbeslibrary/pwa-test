@@ -1,6 +1,7 @@
 {
   "short_name": "Forbes Library β",
   "name": "Forbes Library Progressive Web App Test",
+  "display": "standalone",
   "icons": [
     {
       "src": "img/fl-favicon-114x114.png",
