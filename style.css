@@ -40,7 +40,7 @@ body {
 .menu-hamburger:before {
   content: "";
   position: absolute;
-  top: 0;
+  top: -0.25em;
   left: 0;
   width: 1em;
   height: 0.125em;
@@ -97,13 +97,19 @@ body {
   width: 100%;
   background-color: #722327;
   color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 #top-header h1 {
-  display: inline-block;
   margin: 0;
-  vertical-align: top;
-  line-height: 1.4;
+  flex-grow:1;
+}
+
+#search-button {
+  font-size: 1.25em;
+  padding: 0 0.5em;
 }
 
 #content {
