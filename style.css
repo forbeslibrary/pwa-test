@@ -69,7 +69,9 @@ body {
 #menu-item-hours,
 #menu-item-location,
 #menu-item-contact,
-#menu-item-events {
+#menu-item-events,
+#menu-item-give,
+#menu-item-help {
   padding: 0.25em;
 }
 #menu-item-coolidge,
