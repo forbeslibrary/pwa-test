@@ -12,7 +12,6 @@
     <script src="main.js" async></script>
   </head>
 <body>
-  <input id="navigation-toggle" type="checkbox">
   <header id="top-header">
     <div id="top-header-content">
       <label for="navigation-toggle" class="menu-hamburger">
@@ -22,65 +21,68 @@
       <a id="search-button"><i class="fa fa-search"></i> Search</a>
     </div>
   </header>
-  <nav id="main-navigation">
-    <ul>
-      <li id="menu-item-hours">
-        <a>
-          <i class="fa fa-fw fa-clock-o" aria-hidden="true"></i>
-          Hours
-        </a>
-      </li>
-      <li id="menu-item-location">
-        <a>
-          <i class="fa fa-fw fa-compass"></i>
-          Location
-        </a>
-      </li>
-      <li id="menu-item-contact">
-        <a>
-          <i class="fa fa-fw fa-address-card-o" aria-hidden="true"></i>
-          Contact
-        </a>
-      </li>
-      <li id="menu-item-events">
-        <a>
-          <i class="fa fa-fw fa-calendar" aria-hidden="true"></i>
-          Events
-        </a>
-      </li>
-      <li id="menu-item-give">
-        <a>
-          <i class="fa fa-fw fa-gift" aria-hidden="true"></i>
-          Give
-        </a>
-      </li>
-      <li id="menu-item-help">
-        <i class="fa fa-fw  fa-question-circle" aria-hidden="true"></i>
-          Help
-        </i>
-      </li>
-      <li id="menu-item-coolidge">
-        <a>
-          <img src="img/coolidge-portrait-small.jpg" alt="" width="250" height="119">
-          Calvin Coolidge Presidential Library and Museum
-        </a>
-      </li>
-      <li id="menu-item-digital-gallery">
-        <a>
-          <img src="img/digital-gallery-button.png" alt="" width="250" height="88">
-          Forbes Library Digital Gallery
-        </a>
-      </li>
-    </ul>
-  </nav>
-  <main id="content">
-    <div id="news">
-      <h3>News from Forbes Library</h3>
-      <p id="news-placeholder">
-        <i class="spinner"></i>
-        loading news
-      </p>
-    </div>
-  </main>
+  <div id="main-area">
+    <input id="navigation-toggle" type="checkbox">
+    <nav id="main-navigation">
+      <ul>
+        <li id="menu-item-hours">
+          <a>
+            <i class="fa fa-fw fa-clock-o" aria-hidden="true"></i>
+            Hours
+          </a>
+        </li>
+        <li id="menu-item-location">
+          <a>
+            <i class="fa fa-fw fa-compass"></i>
+            Location
+          </a>
+        </li>
+        <li id="menu-item-contact">
+          <a>
+            <i class="fa fa-fw fa-address-card-o" aria-hidden="true"></i>
+            Contact
+          </a>
+        </li>
+        <li id="menu-item-events">
+          <a>
+            <i class="fa fa-fw fa-calendar" aria-hidden="true"></i>
+            Events
+          </a>
+        </li>
+        <li id="menu-item-give">
+          <a>
+            <i class="fa fa-fw fa-gift" aria-hidden="true"></i>
+            Give
+          </a>
+        </li>
+        <li id="menu-item-help">
+          <i class="fa fa-fw  fa-question-circle" aria-hidden="true"></i>
+            Help
+          </i>
+        </li>
+        <li id="menu-item-coolidge">
+          <a>
+            <img src="img/coolidge-portrait-small.jpg" alt="" width="250" height="119">
+            Calvin Coolidge Presidential Library and Museum
+          </a>
+        </li>
+        <li id="menu-item-digital-gallery">
+          <a>
+            <img src="img/digital-gallery-button.png" alt="" width="250" height="88">
+            Forbes Library Digital Gallery
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <main id="content">
+      <div id="news">
+        <h3>News from Forbes Library</h3>
+        <p id="news-placeholder">
+          <i class="spinner"></i>
+          loading news
+        </p>
+      </div>
+    </main>
+  </div>
 </body>
 </html>

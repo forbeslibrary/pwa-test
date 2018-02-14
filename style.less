@@ -1,9 +1,11 @@
 @forbes-red: #722327;
+@forbes-green: #006c64;
 
 body {
   font-family: 'Lato', sans-serif;
   font-size: 4vw;
-  margin: 1em;
+  background-color: white;
+  margin: 0;
 }
 
 @media (min-width: 400px) {
@@ -13,10 +15,10 @@ body {
 }
 
 @media (min-width: 1200px) {
-  body,
   #top-header-content,
-  #content {
-    max-width: 1200px;
+  #main-area {
+    width: 1200px;
+    margin: 0 auto;
   }
 }
 
@@ -60,6 +62,7 @@ body {
 }
 
 #main-navigation {
+  background-color: white;
   border-right: solid @forbes-red 0.2em;
   box-shadow: 0 0 0.5em @forbes-red;
 }
@@ -123,9 +126,15 @@ body {
   padding: 0 0.5em;
 }
 
+#main-area {
+  background-color: white;
+  min-height: 100%;
+  margin-top: 3em;
+  box-shadow: 0 0 0.5em fade(@forbes-red, 50%);
+}
+
 #content {
-  position: absolute;
-  top: 3em;
+  padding: 1em;
 }
 
 #navigation-toggle~#main-navigation {
@@ -135,8 +144,6 @@ body {
 #navigation-toggle:checked~#main-navigation {
   display: block;
   position: absolute;
-  left: 0;
-  top: 3em;
   width: 250px;
   height: 100%;
 }
