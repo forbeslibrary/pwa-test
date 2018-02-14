@@ -1,3 +1,5 @@
+@forbes-red: #722327;
+
 body {
   font-family: 'Lato', sans-serif;
   font-size: 4vw;
@@ -7,6 +9,14 @@ body {
 @media (min-width: 400px) {
   body {
     font-size: 16px;
+  }
+}
+
+@media (min-width: 1200px) {
+  body,
+  #top-header-content,
+  #content {
+    max-width: 1200px;
   }
 }
 
@@ -50,8 +60,8 @@ body {
 }
 
 #main-navigation {
-  border-right: solid #722327 0.2em;
-  box-shadow: 0 0 0.5em #722327;
+  border-right: solid @forbes-red 0.2em;
+  box-shadow: 0 0 0.5em @forbes-red;
 }
 
 #main-navigation ul {
@@ -63,7 +73,7 @@ body {
   display: block;
   margin: 0;
   font-size: 1.5em;
-  border-bottom: double 0.2em #722327;
+  border-bottom: double 0.2em @forbes-red;
 }
 
 #menu-item-hours,
@@ -95,13 +105,14 @@ body {
   left:0;
   height: 3em;
   width: 100%;
-  background-color: #722327;
+  background-color: @forbes-red;
   color: white;
+}
+#top-header-content {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-
 #top-header h1 {
   margin: 0;
   flex-grow:1;
