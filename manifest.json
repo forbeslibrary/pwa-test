@@ -12,8 +12,14 @@
       "src": "img/fl-favicon-144x144.png",
       "type": "image/png",
       "sizes": "144x144"
+    },
+    {
+      "src": "img/fl-favicon-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512"
     }
   ],
   "theme_color": "#722327",
+  "background_color": "#006c64",
   "start_url": "/pwa-test/?utm_source=homescreen"
 }
