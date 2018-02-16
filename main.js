@@ -1,6 +1,9 @@
 var wp_server = "https://forbeslibrary.org/";
 //var wp_server ="http://localhost:8080/wordpress/";
-$(document).ready(function() {
+
+var app = {};
+
+app.displayNews = function () {
   $.ajax({
     url: wp_server + "wp-json/wp/v2/posts",
     data: {
@@ -13,10 +16,17 @@ $(document).ready(function() {
     });
     console.log(data);
   });
-  
+};
+
+app.registerServiceWorker = function () {
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker
       .register('./service-worker.js')
       .then(function() { console.log('Service Worker Registered'); });
   }
+};
+
+$(document).ready(function() {
+  app.registerServiceWorker();
+  app.displayNews();
 });

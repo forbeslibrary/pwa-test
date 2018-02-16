@@ -1,9 +1,13 @@
 var cacheName = 'forbeslibrary-v1';
-var filesToCache = [
+var filesForAppShell = [
   './index.html',
-  './style.css',
+  './manifest.json',
+  './style.less',
   './main.js',
-  'https://fonts.googleapis.com/css?family=Lato'
+  'https://fonts.googleapis.com/css?family=Lato',
+  'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css',
+  'https://cdnjs.cloudflare.com/ajax/libs/less.js/3.0.0/less.min.js',
+  'https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'
 ];
 
 self.addEventListener('install', function(e) {
@@ -11,7 +15,7 @@ self.addEventListener('install', function(e) {
   e.waitUntil(
     caches.open(cacheName).then(function(cache) {
       console.log('[ServiceWorker] Caching app shell');
-      return cache.addAll(filesToCache);
+      return cache.addAll(filesForAppShell);
     })
   );
 });
