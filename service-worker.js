@@ -1,5 +1,5 @@
 var cacheName = 'forbeslibrary-v1';
-var filesForAppShell = [
+var staticFilesForAppShell = [
   './index.html',
   './manifest.json',
   './style.less',
@@ -17,7 +17,7 @@ self.addEventListener('install', function(e) {
   e.waitUntil(
     caches.open(cacheName).then(function(cache) {
       console.log('[ServiceWorker] Caching app shell');
-      return cache.addAll(filesForAppShell);
+      return cache.addAll(staticFilesForAppShell);
     })
   );
 });
