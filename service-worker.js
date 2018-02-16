@@ -4,6 +4,8 @@ var filesForAppShell = [
   './manifest.json',
   './style.less',
   './main.js',
+  './img/coolidge-portrait-small.jpg',
+  './img/digital-gallery-button.png',
   'https://fonts.googleapis.com/css?family=Lato',
   'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css',
   'https://cdnjs.cloudflare.com/ajax/libs/less.js/3.0.0/less.min.js',
@@ -36,10 +38,15 @@ self.addEventListener('activate', function(e) {
 });
 
 self.addEventListener('fetch', function(e) {
-  console.log('[ServiceWorker] Fetch', e.request.url);
   e.respondWith(
     caches.match(e.request).then(function(response) {
-      return response || fetch(e.request);
+      if (response) {
+        console.log('[ServiceWorker] Returning cached response for: ' + e.request.url);
+        return response;
+      } else {
+        console.log('[ServiceWorker] Fetching from network: ' + e.request.url);
+        return fetch(e.request);
+      }
     })
   );
 });
