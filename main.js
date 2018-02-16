@@ -18,6 +18,20 @@ app.displayNews = function () {
   });
 };
 
+app.displayBySlug = function (slug) {
+  $.ajax({
+    url: wp_server + "wp-json/wp/v2/pages",
+    data: {
+      "slug": slug
+    }
+  }).then(function(data) {
+    var page = data[0];
+    $("#content").empty();
+    $("#content").append(page.content.rendered);
+    console.log(page);
+  });
+};
+
 app.registerServiceWorker = function () {
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker
@@ -26,7 +40,23 @@ app.registerServiceWorker = function () {
   }
 };
 
+app.addLinkClickHandler = function () {
+  var wp_content_re = /:\/\/forbeslibrary.org\/(.*?)\/?$/;
+  $('a').click(function (e) {
+    var href = $(this).attr('href');
+    var matches = wp_content_re.exec(href);
+    if (matches) {
+      var slug = matches[1];
+      console.log(slug);
+      app.displayBySlug(slug);
+
+      e.preventDefault();
+    }
+  });
+};
+
 $(document).ready(function() {
   app.registerServiceWorker();
+  app.addLinkClickHandler();
   app.displayNews();
 });
