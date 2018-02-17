@@ -18,17 +18,15 @@ app.displayNews = function () {
   });
 };
 
-app.displayBySlug = function (slug) {
+app.displayByPath = function (path) {
+  // Note that this is not part of the standard WP REST API and requires a
+  // plugin!
   $.ajax({
-    url: wp_server + "wp-json/wp/v2/pages",
-    data: {
-      "slug": slug
-    }
+    url: wp_server + "wp-json/forbes/v1/path/" + path,
   }).then(function(data) {
-    var page = data[0];
     $("#content").empty();
-    $("#content").append(page.content.rendered);
-    console.log(page);
+    $("#content").append(data.content.rendered);
+    console.log(data);
   });
 };
 
@@ -46,9 +44,9 @@ app.addLinkClickHandler = function () {
     var href = $(this).attr('href');
     var matches = wp_content_re.exec(href);
     if (matches) {
-      var slug = matches[1];
-      console.log(slug);
-      app.displayBySlug(slug);
+      var path = matches[1];
+      console.log(path);
+      app.displayByPath(path);
 
       e.preventDefault();
     }
