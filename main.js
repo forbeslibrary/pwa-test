@@ -40,7 +40,7 @@ app.registerServiceWorker = function () {
 
 app.addLinkClickHandler = function () {
   var wp_content_re = /:\/\/forbeslibrary.org\/(.*?)\/?$/;
-  $('a').click(function (e) {
+  $(document).on('click', 'a', function (e) {
     var href = $(this).attr('href');
     var matches = wp_content_re.exec(href);
     if (matches) {
