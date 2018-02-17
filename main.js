@@ -6,6 +6,8 @@ var app = {};
 app.displayByPath = function (path) {
   // Note that this is not part of the standard WP REST API and requires a
   // plugin!
+  $("#content").empty().append($('<p class="spinner"></p>'));
+
   $.ajax({
     url: wp_server + "wp-json/forbes/v1/path/" + path,
   }).then(function(data) {
