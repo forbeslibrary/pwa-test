@@ -1,25 +1,12 @@
 @forbes-red: #722327;
 @forbes-green: #006c64;
+@header-height: 3em;
 
 body {
   font-family: 'Lato', sans-serif;
   font-size: 4vw;
   background-color: white;
   margin: 0;
-}
-
-@media (min-width: 400px) {
-  body {
-    font-size: 16px;
-  }
-}
-
-@media (min-width: 1200px) {
-  #top-header-content,
-  #main-area {
-    width: 1200px;
-    margin: 0 auto;
-  }
 }
 
 @keyframes spinner {
@@ -133,7 +120,7 @@ body {
   position: fixed;
   top:0;
   left:0;
-  height: 3em;
+  height: @header-height;
   width: 100%;
   background-color: @forbes-red;
   color: white;
@@ -142,6 +129,8 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0.25em 0.5em;
+  box-sizing: border-box;
 }
 #top-header h1 {
   margin: 0;
@@ -155,7 +144,7 @@ body {
 
 #main-area {
   background-color: white;
-  margin-top: 3em;
+  margin-top: @header-height;
   box-shadow: 0 0 0.5em fade(@forbes-red, 50%);
 }
 
@@ -182,4 +171,35 @@ body {
 #navigation-toggle {
   position: absolute;
   left: -99999px;
+}
+
+/* media queries for responsive design */
+@media (min-width: 400px) {
+  body {
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 1200px) {
+  #top-header-content {
+    width: 1200px;
+    margin: 0 auto 0 auto;
+  }
+  #main-area {
+    width: 1200px;
+    margin: @header-height auto 0 auto;
+  }
+  #top-header .menu-hamburger {
+    display: none;
+  }
+  #navigation-toggle {
+    &~#main-navigation {
+      display: block;
+      position: absolute;
+      width: 250px;
+    }
+    &~#content {
+      margin-left: 250px;
+    }
+  }
 }
