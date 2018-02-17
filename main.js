@@ -12,6 +12,7 @@ app.displayByPath = function (path) {
     url: wp_server + "wp-json/forbes/v1/path/" + path,
   }).then(function(data) {
     $("#content").empty();
+    $("#content").append($('<h2>' + data.title.rendered + '</h2>'));
     $("#content").append(data.content.rendered);
     console.log(data);
   });
