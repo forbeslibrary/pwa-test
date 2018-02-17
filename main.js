@@ -41,8 +41,15 @@ app.addLinkClickHandler = function () {
   });
 };
 
+app.addMenuClickHandler = function () {
+  $('#main-navigation').on('click', 'a', function (e) {
+    $('#navigation-toggle').prop('checked', false);
+  });
+};
+
 $(document).ready(function() {
   app.registerServiceWorker();
   app.addLinkClickHandler();
+  app.addMenuClickHandler();
   app.displayByPath('home');
 });
