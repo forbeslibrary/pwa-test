@@ -45,6 +45,9 @@ app.addMenuClickHandler = function () {
   $('#main-navigation').on('click', 'a', function (e) {
     $('#navigation-toggle').prop('checked', false);
   });
+  $('#content').on('click', function (e) {
+    $('#navigation-toggle').prop('checked', false);
+  });
 };
 
 $(document).ready(function() {
