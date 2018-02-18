@@ -3,14 +3,18 @@ var wp_server = "https://forbeslibrary.org/";
 
 var app = {};
 
-app.displayByPath = function (path) {
+app.displayByPath = function (path, popstate=false) {
   // Note that this is not part of the standard WP REST API and requires a
   // plugin!
   $("#content").empty().append($('<p class="spinner"></p>'));
+  if (!popstate) {
+    history.pushState({"path": path}, path, '/' + path);
+  }
 
   $.ajax({
     url: wp_server + "wp-json/forbes/v1/path/" + path,
   }).then(function(data) {
+    document.title = data.title.rendered + ' [Forbes Library]';
     $("#content").empty();
     $("#content").append($('<h2>' + data.title.rendered + '</h2>'));
     $("#content").append(data.content.rendered);
@@ -50,9 +54,16 @@ app.addMenuClickHandler = function () {
   });
 };
 
+app.addPopStateHandler = function () {
+  $(window).bind('popstate', function (e) {
+    app.displayByPath(e.originalEvent.state.path, true);
+  });
+};
+
 $(document).ready(function() {
   app.registerServiceWorker();
   app.addLinkClickHandler();
   app.addMenuClickHandler();
+  app.addPopStateHandler();
   app.displayByPath('home');
 });
