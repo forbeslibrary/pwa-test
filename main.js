@@ -70,5 +70,5 @@ $(document).ready(function() {
   app.addLinkClickHandler();
   app.addMenuClickHandler();
   app.addPopStateHandler();
-  app.displayByPath(location.pathname.substring(1));
+  app.displayByPath(location.href.substring(homeURL.length));
 });
