@@ -1,3 +1,4 @@
+var homeURL = "https://forbeslibrary.github.io/pwa-test/";
 var wp_server = "https://forbeslibrary.org/";
 //var wp_server ="http://localhost:8080/wordpress/";
 
@@ -8,7 +9,7 @@ app.displayByPath = function (path, popstate=false) {
   // plugin!
   $("#content").empty().append($('<p class="spinner"></p>'));
   if (!popstate) {
-    history.pushState({"path": path}, path, '/' + path);
+    history.pushState({"path": path}, path, homeURL + path);
   }
 
   if (path === '') {
