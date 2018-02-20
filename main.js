@@ -69,5 +69,5 @@ $(document).ready(function() {
   app.addLinkClickHandler();
   app.addMenuClickHandler();
   app.addPopStateHandler();
-  app.displayByPath('');
+  app.displayByPath(location.pathname.substring(1));
 });
