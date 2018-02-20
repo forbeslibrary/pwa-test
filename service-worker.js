@@ -1,6 +1,6 @@
 var cacheName = 'forbeslibrary-v1';
 var staticFilesForAppShell = [
-  './index.html',
+  './',
   './manifest.json',
   './style.less',
   './main.js',

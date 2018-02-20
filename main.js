@@ -11,6 +11,10 @@ app.displayByPath = function (path, popstate=false) {
     history.pushState({"path": path}, path, '/' + path);
   }
 
+  if (path === '') {
+    path = 'home';
+  }
+
   $.ajax({
     url: wp_server + "wp-json/forbes/v1/path/" + path,
   }).then(function(data) {
@@ -65,5 +69,5 @@ $(document).ready(function() {
   app.addLinkClickHandler();
   app.addMenuClickHandler();
   app.addPopStateHandler();
-  app.displayByPath('home');
+  app.displayByPath('');
 });
