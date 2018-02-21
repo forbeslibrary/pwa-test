@@ -1,5 +1,5 @@
 var cacheName = 'forbeslibrary-v1';
-var homeURL = "https://forbeslibrary.github.io/pwa-test/";
+var homeURL = "/pwa-test/";
 var staticFilesForAppShell = [
   homeURL,
   homeURL + 'manifest.json',

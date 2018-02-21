@@ -1,4 +1,4 @@
-var homeURL = "https://forbeslibrary.github.io/pwa-test/";
+var homeURL = "/pwa-test/";
 var wp_server = "https://forbeslibrary.org/";
 //var wp_server ="http://localhost:8080/wordpress/";
 
@@ -7,7 +7,7 @@ var app = {};
 app.displayByPath = function (path, popstate=false) {
   // Note that this is not part of the standard WP REST API and requires a
   // plugin!
-  $("#content").empty().append($('<p class="spinner"></p>'));
+  $("#content").empty().append($('<p class="spinner"> loading: ' + path + '</p>'));
   if (!popstate) {
     history.pushState({"path": path}, path, homeURL + path);
   }
@@ -70,5 +70,5 @@ $(document).ready(function() {
   app.addLinkClickHandler();
   app.addMenuClickHandler();
   app.addPopStateHandler();
-  app.displayByPath(location.href.substring(homeURL.length));
+  app.displayByPath(location.pathname.substring(homeURL.length));
 });
