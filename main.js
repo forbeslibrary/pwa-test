@@ -5,7 +5,7 @@ var wp_server = "https://forbeslibrary.org/";
 var app = {};
 
 app.displayByPath = function (path, popstate=false) {
-  $("#content").empty().append($('<p class="spinner"> loading: ' + path + '</p>'));
+  $("#content").empty().append($(`<p class="spinner"> loading: ${path}</p>`));
 
   if (!popstate) {
     history.pushState({"path": path}, path, homeURL + path);
@@ -20,9 +20,9 @@ app.displayByPath = function (path, popstate=false) {
   $.ajax({
     url: wp_server + "wp-json/forbes/v1/path/" + path,
   }).then(function(data) {
-    document.title = data.title.rendered + ' [Forbes Library]';
+    document.title = `${data.title.rendered} [Forbes Library]`;
     $("#content").empty();
-    $("#content").append($('<h2>' + data.title.rendered + '</h2>'));
+    $("#content").append($(`<h2>${data.title.rendered}</h2>`));
     $("#content").append(data.content.rendered);
     console.log(data);
   });
@@ -30,6 +30,9 @@ app.displayByPath = function (path, popstate=false) {
 
 app.displaySearchResults = function (query) {
   $("#content").empty().append($('<p class="spinner"> loading search results</p>'));
+
+  history.pushState({"path": '/', "search": query}, "Search Results", `${homeURL}?s=${query}`);
+  document.title = 'Search Results [Forbes Library]';
 
   // Note that this is not part of the standard WP REST API and requires a
   // plugin!
