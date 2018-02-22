@@ -17,6 +17,7 @@ var app = {};
 app.init = function () {
   app.registerServiceWorker();
   app.addLinkClickHandler();
+  app.addFormSubmitHanler();
   app.addMenuClickHandler();
   app.addPopStateHandler();
 
@@ -134,6 +135,28 @@ app.addLinkClickHandler = function () {
   });
 };
 
+/**
+ * Adds a form submit handler that prevents the default action on form submits
+ * our app recognizes.
+ */
+app.addFormSubmitHanler = function () {
+  $('#search').on('submit', function (e) {
+    var query = $('#search>input').val();
+    app.route(`${app.baseURL()}?s=${query}`);
+    e.preventDefault();
+  });
+};
+
+/**
+ * Gets the base url for the app
+ */
+app.baseURL = function () {
+  var url = new URL(document.location);
+  url.pathname = homeURL;
+  url.search = '';
+  url.hash = '';
+  return url;
+};
 
 /**
  * Adds click handlers that enhance the menu by closing it if neccesary after
