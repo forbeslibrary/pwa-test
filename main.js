@@ -96,6 +96,11 @@ app.addLinkClickHandler = function () {
   });
 };
 
+
+/**
+ * Adds click handlers that enhance the menu by closing it if neccesary after
+ * and closing it as necessary if the user clicks outside of the menu area.
+ */
 app.addMenuClickHandler = function () {
   $('#main-navigation').on('click', 'a', function (e) {
     $('#navigation-toggle').prop('checked', false);
@@ -105,6 +110,11 @@ app.addMenuClickHandler = function () {
   });
 };
 
+
+/**
+ * Adds a popstate handler that routes requests on a popstate event, i.e. When
+ * navigating using the browser history.
+ */
 app.addPopStateHandler = function () {
   $(window).bind('popstate', function (e) {
     app.displayByPath(e.originalEvent.state.path, true);
