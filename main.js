@@ -3,11 +3,17 @@
  * by the webpage. Its primary responsibility is routing and event handling.
  */
 
+/* jshint esversion:6 */
+
 var homeURL = "/pwa-test/";
 var wp_server = "https://forbeslibrary.org/";
 
 var app = {};
 
+
+/**
+ * Initializes the app. This is called after the DOM is loaded.
+ */
 app.init = function () {
   app.registerServiceWorker();
   app.addLinkClickHandler();
@@ -23,6 +29,14 @@ app.init = function () {
   }
 };
 
+/**
+ * Displays the content associated with a path on wordpress.
+ *
+ * Note that this uses an AJAX call that is not part of the standard WP REST API
+ * and requires a plugin!
+ *
+ * Also note that does not respect redirects.
+ */
 app.displayByPath = function (path, popstate=false) {
   $("#content").empty().append($(`<p class="spinner"> loading: ${path}</p>`));
 
@@ -34,8 +48,6 @@ app.displayByPath = function (path, popstate=false) {
     path = 'home';
   }
 
-  // Note that this is not part of the standard WP REST API and requires a
-  // plugin!
   $.ajax({
     url: wp_server + "wp-json/forbes/v1/path/" + path,
   }).then(function(data) {
@@ -47,14 +59,18 @@ app.displayByPath = function (path, popstate=false) {
   });
 };
 
+/**
+ * Displays search results for the query.
+ *
+ * Note that this uses an AJAX call that is not part of the standard WP REST API
+ * and requires a plugin!
+ */
 app.displaySearchResults = function (query) {
   $("#content").empty().append($('<p class="spinner"> loading search results</p>'));
 
   history.pushState({"path": '/', "search": query}, "Search Results", `${homeURL}?s=${query}`);
   document.title = 'Search Results [Forbes Library]';
 
-  // Note that this is not part of the standard WP REST API and requires a
-  // plugin!
   $.ajax({
     url: wp_server + "/wp-json/relevanssi/v1/search?s=" + query,
   }).then(function(data) {
@@ -73,6 +89,9 @@ app.displaySearchResults = function (query) {
   });
 };
 
+/**
+ * Registers the ServiceWorker in browsers that support it.
+ */
 app.registerServiceWorker = function () {
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker
@@ -81,6 +100,11 @@ app.registerServiceWorker = function () {
   }
 };
 
+
+/**
+ * Adds a click handler that loads prevents the default action on links to
+ * content from forbeslibrary.org and loads the content through ajax instead.
+ */
 app.addLinkClickHandler = function () {
   var wp_content_re = /:\/\/forbeslibrary.org\/(.*?)\/?$/;
   $(document).on('click', 'a', function (e) {
@@ -88,7 +112,6 @@ app.addLinkClickHandler = function () {
     var matches = wp_content_re.exec(href);
     if (matches) {
       var path = matches[1];
-      console.log(path);
       app.displayByPath(path);
 
       e.preventDefault();
