@@ -1,8 +1,27 @@
+/**
+ * @fileoverview main.js contains the client side javascript to be run directly
+ * by the webpage. Its primary responsibility is routing and event handling.
+ */
+
 var homeURL = "/pwa-test/";
 var wp_server = "https://forbeslibrary.org/";
-//var wp_server ="http://localhost:8080/wordpress/";
 
 var app = {};
+
+app.init = function () {
+  app.registerServiceWorker();
+  app.addLinkClickHandler();
+  app.addMenuClickHandler();
+  app.addPopStateHandler();
+
+  var params = (new URL(document.location)).searchParams;
+
+  if (params.has('s')) {
+    app.displaySearchResults(params.get('s'));
+  } else {
+    app.displayByPath(location.pathname.substring(homeURL.length));
+  }
+};
 
 app.displayByPath = function (path, popstate=false) {
   $("#content").empty().append($(`<p class="spinner"> loading: ${path}</p>`));
@@ -92,17 +111,7 @@ app.addPopStateHandler = function () {
   });
 };
 
+// Initalize the app once the DOM has loaded and is ready for javascript.
 $(document).ready(function() {
-  app.registerServiceWorker();
-  app.addLinkClickHandler();
-  app.addMenuClickHandler();
-  app.addPopStateHandler();
-
-  var params = (new URL(document.location)).searchParams;
-
-  if (params.has('s')) {
-    app.displaySearchResults(params.get('s'));
-  } else {
-    app.displayByPath(location.pathname.substring(homeURL.length));
-  }
+  app.init();
 });
