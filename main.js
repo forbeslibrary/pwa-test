@@ -20,12 +20,26 @@ app.init = function () {
   app.addMenuClickHandler();
   app.addPopStateHandler();
 
-  var params = (new URL(document.location)).searchParams;
+  app.route(document.location);
+};
 
-  if (params.has('s')) {
-    app.displaySearchResults(params.get('s'));
+/**
+ * Loads the appropriate content based on the passed url.
+ */
+app.route = function (url, popstate=false) {
+  url = new URL(url);
+  console.log('route to: ' + url.href);
+
+  if (!popstate) {
+    history.pushState({}, url.href, url.href);
+  }
+
+  if (url.searchParams.has('s')) {
+    url.pathname = homeURL;
+    history.replaceState({}, url.href, url.href);
+    app.displaySearchResults(url.searchParams.get('s'));
   } else {
-    app.displayByPath(location.pathname.substring(homeURL.length));
+    app.displayByPath(url.pathname.substring(homeURL.length));
   }
 };
 
@@ -37,12 +51,8 @@ app.init = function () {
  *
  * Also note that does not respect redirects.
  */
-app.displayByPath = function (path, popstate=false) {
+app.displayByPath = function (path) {
   $("#content").empty().append($(`<p class="spinner"> loading: ${path}</p>`));
-
-  if (!popstate) {
-    history.pushState({"path": path}, path, homeURL + path);
-  }
 
   if (path === '') {
     path = 'home';
@@ -67,8 +77,6 @@ app.displayByPath = function (path, popstate=false) {
  */
 app.displaySearchResults = function (query) {
   $("#content").empty().append($('<p class="spinner"> loading search results</p>'));
-
-  history.pushState({"path": '/', "search": query}, "Search Results", `${homeURL}?s=${query}`);
   document.title = 'Search Results [Forbes Library]';
 
   $.ajax({
@@ -106,13 +114,14 @@ app.registerServiceWorker = function () {
  * content from forbeslibrary.org and loads the content through ajax instead.
  */
 app.addLinkClickHandler = function () {
-  var wp_content_re = /:\/\/forbeslibrary.org\/(.*?)\/?$/;
   $(document).on('click', 'a', function (e) {
-    var href = $(this).attr('href');
-    var matches = wp_content_re.exec(href);
-    if (matches) {
-      var path = matches[1];
-      app.displayByPath(path);
+    var url = new URL($(this).attr('href'));
+    if (url.hostname == 'forbeslibrary.org') {
+      url.hostname = document.location.hostname;
+      url.port = document.location.port;
+      url.protocol = document.location.protocol;
+      url.pathname = homeURL + url.pathname.substring(1);
+      app.route(url);
 
       e.preventDefault();
     }
@@ -140,7 +149,7 @@ app.addMenuClickHandler = function () {
  */
 app.addPopStateHandler = function () {
   $(window).bind('popstate', function (e) {
-    app.displayByPath(e.originalEvent.state.path, true);
+    app.route(document.location, true);
   });
 };
 
