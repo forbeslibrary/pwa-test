@@ -122,7 +122,9 @@ app.addLinkClickHandler = function () {
     var url = new URL($(this).attr('href'));
     if (url.hostname == 'forbeslibrary.org') {
       url.hostname = document.location.hostname;
-      url.port = document.location.port;
+      if (document.location.port) {
+        url.port = document.location.port;
+      }
       url.protocol = document.location.protocol;
       url.pathname = homeURL + url.pathname.substring(1);
       app.route(url);
