@@ -60,12 +60,15 @@ app.displayByPath = function (path) {
 
   $.ajax({
     url: wp_server + "wp-json/forbes/v1/path/" + path,
-  }).then(function(data) {
+  }).then(function (data) {
     document.title = `${data.title.rendered} [Forbes Library]`;
     $("#content").empty();
     $("#content").append($(`<h2>${data.title.rendered}</h2>`));
     $("#content").append(data.content.rendered);
     console.log(data);
+  }).catch(function (reason) {
+    $("#content").empty();
+    $("#content").append(`Failed to fetch the requested data: ${reason.statusText}`);
   });
 };
 
@@ -92,8 +95,9 @@ app.displaySearchResults = function (query) {
       $("#content").append(article);
       console.log(post);
     });
-
-
+  }).catch(function (reason) {
+    $("#content").empty();
+    $("#content").append(reason.responseJSON.message);
   });
 };
 
