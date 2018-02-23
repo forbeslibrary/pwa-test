@@ -20,7 +20,10 @@ app.init = function () {
   app.addFormSubmitHanler();
   app.addMenuClickHandler();
   app.addPopStateHandler();
-
+  var acknowledged = window.confirm('This website is a test and a demo and is incomplete. The official Forbes Library website can be found at https://forbeslibrary.org/. Click OK to proceed or CANCEL to be redirect to the offial site.');
+  if (!acknowledged) {
+    window.location.href = 'https://forbeslibrary.org/';
+  }
   app.route(document.location);
 };
 
