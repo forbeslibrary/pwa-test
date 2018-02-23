@@ -43,8 +43,30 @@ app.route = function (url, popstate=false) {
     history.replaceState({}, url.href, url.href);
     app.displaySearchResults(url.searchParams.get('s'));
   } else {
-    app.displayByPath(url.pathname.substring(homeURL.length));
+    var path = url.pathname.substring(homeURL.length);
+    if (path == '') {
+      app.displayStaticFile('static/home.html');
+    } else {
+      app.displayByPath(path);
+    }
   }
+};
+
+/**
+ * Display static file. This pulls content directly from the webserver and does
+ * not use the WordPress REST API.
+ */
+app.displayStaticFile = function (path) {
+
+  $.ajax({
+    url: homeURL + path
+  }).then(function (data) {
+    $("#content").empty();
+    $("#content").append(data);
+  }).catch(function (reason) {
+    $("#content").empty();
+    $("#content").append(`Failed to fetch the requested data: ${reason.statusText}`);
+  });
 };
 
 /**
@@ -58,12 +80,8 @@ app.route = function (url, popstate=false) {
 app.displayByPath = function (path) {
   $("#content").empty().append($(`<p class="spinner"> loading: ${path}</p>`));
 
-  if (path === '') {
-    path = 'home';
-  }
-
   $.ajax({
-    url: wp_server + "wp-json/forbes/v1/path/" + path,
+    url:  wp_server + "wp-json/forbes/v1/path/" + path
   }).then(function (data) {
     document.title = `${data.title.rendered} [Forbes Library]`;
     $("#content").empty();

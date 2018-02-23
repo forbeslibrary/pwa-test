@@ -7,6 +7,8 @@ var staticFilesForAppShell = [
   homeURL + 'main.js',
   homeURL + 'img/coolidge-portrait-small.jpg',
   homeURL + 'img/digital-gallery-button.png',
+  homeURL + 'img/logo-250x182.png',
+  homeURL + 'static/home.html',
   'https://fonts.googleapis.com/css?family=Lato',
   'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css',
   'https://cdnjs.cloudflare.com/ajax/libs/less.js/3.0.0/less.min.js',
