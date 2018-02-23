@@ -17,9 +17,10 @@ var app = {};
 app.init = function () {
   app.registerServiceWorker();
   app.addLinkClickHandler();
-  app.addFormSubmitHanler();
   app.addMenuClickHandler();
   app.addPopStateHandler();
+  app.enhanceSearchForm();
+
   var acknowledged = window.confirm('This website is a test and a demo and is incomplete. The official Forbes Library website can be found at https://forbeslibrary.org/. Click OK to proceed or CANCEL to be redirect to the offial site.');
   if (!acknowledged) {
     window.location.href = 'https://forbeslibrary.org/';
@@ -157,13 +158,16 @@ app.addLinkClickHandler = function () {
 };
 
 /**
- * Adds a form submit handler that prevents the default action on form submits
- * our app recognizes.
+ * Improves the search form with, primarily by allowing ajax requests.
  */
-app.addFormSubmitHanler = function () {
+app.enhanceSearchForm = function () {
   $('#search-form').on('submit', function (e) {
     var query = $('#search-box').val();
     app.route(`${app.baseURL()}?s=${query}`);
+    e.preventDefault();
+  });
+  $('#search-form').on('focus', function (e) {
+    $('#search-box').focus();
     e.preventDefault();
   });
 };
