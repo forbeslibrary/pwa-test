@@ -161,8 +161,8 @@ app.addLinkClickHandler = function () {
  * our app recognizes.
  */
 app.addFormSubmitHanler = function () {
-  $('#search').on('submit', function (e) {
-    var query = $('#search>input').val();
+  $('#search-form').on('submit', function (e) {
+    var query = $('#search-box').val();
     app.route(`${app.baseURL()}?s=${query}`);
     e.preventDefault();
   });
