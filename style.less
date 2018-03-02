@@ -145,20 +145,29 @@ body {
 
 #content {
   padding: 1em;
+  transition-property: margin-left;
+  transition-duration: 0.25s;
 }
 
 #navigation-toggle~#main-navigation {
-  display: none;
+  display: block;
+  position: absolute;
+  width: 250px;
+  left: -250px;
+  transition-property: left;
+  transition-duration: 0.25s;
 }
 
 #navigation-toggle:checked~#main-navigation {
   display: block;
   position: absolute;
-  width: 250px;
+  left: 0;
 }
 
-#navigation-toggle:checked~#content {
-  margin-left: 250px;
+@media (min-width:600px) {
+  #navigation-toggle:checked~#content {
+    margin-left: 250px;
+  }
 }
 
 /* Home Page */
@@ -195,9 +204,7 @@ body {
   }
   #navigation-toggle {
     &~#main-navigation {
-      display: block;
-      position: absolute;
-      width: 250px;
+      left: initial;
     }
     &~#content {
       margin-left: 250px;
