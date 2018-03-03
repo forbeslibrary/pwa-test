@@ -1,0 +1,23 @@
+/**
+ * A pure css animated spinner
+ */
+
+@keyframes spinner {
+  to {transform: rotate(360deg);}
+}
+
+.spinner:before {
+  content: '';
+  box-sizing: border-box;
+  display: inline-block;
+  position: relative;
+  top: 1.5em;
+  width: 2em;
+  height: 2em;
+  margin: 1em;
+  border-radius: 50%;
+  border: 0.2em solid #ccc;
+  border-top-color: @forbes-green;
+  border-bottom-color: @forbes-red;
+  animation: spinner .8s linear infinite;
+}
