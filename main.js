@@ -118,6 +118,7 @@ app.displaySearchResults = function (query) {
       $("#content").append(article);
       console.log(post);
     });
+    $("#content a").first().focus();
   }).catch(function (reason) {
     $("#content").empty();
     $("#content").append(reason.responseJSON.message);
