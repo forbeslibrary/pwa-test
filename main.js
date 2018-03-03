@@ -112,9 +112,9 @@ app.displaySearchResults = function (query) {
     $("#content").append('<h2>Search Results</h2>');
   }).done(function (data) {
     data.forEach(function (post) {
-      var article = $('<article>');
+      var article = $('<article class="search-result">');
       $(article).append(`<h3><a href="${post.link}">${post.title.rendered}</a></h3>`);
-      $(article).append(`<cite>${post.link}</cite>`);
+      $(article).append(`<cite><a href="${post.link}">${post.link}</a></cite>`);
       $(article).append(`<div>${post.excerpt.rendered}</div>`);
       $("#content").append(article);
       console.log(post);
