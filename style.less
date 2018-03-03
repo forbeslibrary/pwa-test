@@ -38,7 +38,8 @@ body {
 
 // the menu is always open on very wide screens
 @media (min-width: 1200px) {
-  #navigation-toggle&~#main-navigation {
+  #navigation-toggle~#main-navigation,
+  #navigation-toggle:checked~#main-navigation {
     left: initial;
   }
   #navigation-toggle~#content {
@@ -73,6 +74,7 @@ body {
   details {
     & > summary {
       list-style: none;
+      cursor: pointer;
       &::-webkit-details-marker {
         display: none;
       }
@@ -85,17 +87,16 @@ body {
       }
     }
   }
-}
-
-#menu-item-coolidge,
-#menu-item-digital-gallery {
-  text-align: center;
-  padding: 0 0 0.5em 0;
-  a {
-    font-size: 0.75em;
-  }
-  img {
-    margin-bottom: 0.5em;
+  #menu-item-coolidge,
+  #menu-item-digital-gallery {
+    text-align: center;
+    padding: 0 0 0.5em 0;
+    a {
+      font-size: 0.75em;
+    }
+    img {
+      margin-bottom: 0.5em;
+    }
   }
 }
 

@@ -37,6 +37,7 @@ app.route = function (url, popstate=false) {
 
   if (!popstate) {
     history.pushState({}, url.href, url.href);
+    $(document).scrollTop(0);
   }
 
   if (url.searchParams.has('s')) {
