@@ -15,23 +15,46 @@ body {
   margin: 0;
 }
 
-/*** navigation sidebar ***/
+/*** navigation sidebar ****/
+// the menu is closed by default, so we hide it off screen
 #main-navigation {
   position: absolute;
   display: block;
+  width: 250px;
+  left: -250px;
+}
+
+// open the menu when the toggle is checked
+#navigation-toggle:checked~#main-navigation {
+  left: 0;
+}
+
+// menu should not overlap the content on wide screens
+#navigation-toggle:checked~#content {
+  @media (min-width:600px) {
+    margin-left: 250px;
+  }
+}
+
+// the menu is always open on very wide screens
+@media (min-width: 1200px) {
+  #navigation-toggle&~#main-navigation {
+    left: initial;
+  }
+  #navigation-toggle~#content {
+    margin-left: 250px;
+  }
+}
+
+#main-navigation {
   background-color: white;
   box-shadow: 0 0 0.5em @forbes-red;
-  width: 250px;
-  left: -250px; // the menu is closed by default, so we hide it off screen
   transition-property: left;
   transition-duration: 0.25s;
 
-  a {
-    &:link,
-    &:visited {
-      color: black;
-      text-decoration: none;
-    }
+  a, a:link, a:visited {
+    color: black;
+    text-decoration: none;
   }
 
   ul {
@@ -62,108 +85,21 @@ body {
       }
     }
   }
-  #menu-item-coolidge,
-  #menu-item-digital-gallery {
-    text-align: center;
-    padding: 0 0 0.5em 0;
-    a {
-      font-size: 0.75em;
-    }
-    img {
-      margin-bottom: 0.5em;
-    }
+}
+
+#menu-item-coolidge,
+#menu-item-digital-gallery {
+  text-align: center;
+  padding: 0 0 0.5em 0;
+  a {
+    font-size: 0.75em;
+  }
+  img {
+    margin-bottom: 0.5em;
   }
 }
 
-#navigation-toggle:checked~#main-navigation {
-  left: 0; // open the menu when the toggle is checked
-}
-
-@media (min-width: 1200px) { // the menu is always open on wide screens
-  #navigation-toggle {
-    &~#main-navigation {
-      left: initial;
-    }
-    &~#content {
-      margin-left: 250px; // the menu should not overlap content on wide screens
-    }
-  }
-}
-
-/*** ***/
-
-#top-header {
-  z-index: 100;
-  position: fixed;
-  top:0;
-  left:0;
-  height: @header-height;
-  width: 100%;
-  background-color: @forbes-red;
-  color: white;
-}
-#top-header-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.25em 0.5em;
-  box-sizing: border-box;
-}
-#top-header h1 {
-  margin: 0;
-  flex-grow:1;
-}
-
-#main-area {
-  background-color: white;
-  margin-top: @header-height;
-  box-shadow: 0 0 0.5em fade(@forbes-red, 50%);
-}
-
-#content {
-  padding: 1em;
-  transition-property: margin-left;
-  transition-duration: 0.25s;
-}
-
-@media (min-width:600px) {
-  #navigation-toggle:checked~#content {
-    margin-left: 250px;
-  }
-}
-
-/* Home Page */
-#home-page-logo {
-  margin: 0 auto;
-  display: block;
-}
-
-/* accessible hide */
-#navigation-toggle-label,
-#navigation-toggle {
-  position: absolute;
-  left: -99999px;
-}
-
-@media (min-width: 400px) {
-  body {
-    font-size: 16px;
-  }
-}
-
-@media (min-width: 1200px) {
-  #top-header-content {
-    width: 1200px;
-    margin: 0 auto 0 auto;
-  }
-  #main-area {
-    width: 1200px;
-    margin: @header-height auto 0 auto;
-  }
-  #top-header .menu-hamburger {
-    display: none;
-  }
-}
+/*** search ***/
 
 #search-button {
   font-size: 1.25em;
@@ -207,5 +143,76 @@ body {
   }
   @media (min-width: 1200px) {
     width: 300px;
+  }
+}
+
+/*** header ***/
+#top-header {
+  z-index: 100;
+  position: fixed;
+  top:0;
+  left:0;
+  height: @header-height;
+  width: 100%;
+  background-color: @forbes-red;
+  color: white;
+}
+
+#top-header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.25em 0.5em;
+  box-sizing: border-box;
+}
+
+#top-header h1 {
+  margin: 0;
+  flex-grow:1;
+}
+
+/*** content area ***/
+#main-area {
+  background-color: white;
+  margin-top: @header-height;
+  box-shadow: 0 0 0.5em fade(@forbes-red, 50%);
+}
+
+#content {
+  padding: 1em;
+  transition-property: margin-left;
+  transition-duration: 0.25s;
+}
+
+/*** home page ***/
+#home-page-logo {
+  margin: 0 auto;
+  display: block;
+}
+
+/* accessible hide */
+#navigation-toggle-label,
+#navigation-toggle {
+  position: absolute;
+  left: -99999px;
+}
+
+@media (min-width: 400px) {
+  body {
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 1200px) {
+  #top-header-content {
+    width: 1200px;
+    margin: 0 auto 0 auto;
+  }
+  #main-area {
+    width: 1200px;
+    margin: @header-height auto 0 auto;
+  }
+  #top-header .menu-hamburger {
+    display: none;
   }
 }
