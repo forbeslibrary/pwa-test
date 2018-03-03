@@ -107,10 +107,11 @@ app.displaySearchResults = function (query) {
 
   $.ajax({
     url: wp_server + "/wp-json/relevanssi/v1/search?s=" + query,
-  }).then(function(data) {
+  }).always(function (data) {
     $("#content").empty();
-    $("#content").append($('<h2>Search Results</h2>'));
-    data.forEach( function (post) {
+    $("#content").append('<h2>Search Results</h2>');
+  }).done(function (data) {
+    data.forEach(function (post) {
       var article = $('<article>');
       $(article).append(`<h3><a href="${post.link}">${post.title.rendered}</a></h3>`);
       $(article).append(`<cite>${post.link}</cite>`);
@@ -120,8 +121,7 @@ app.displaySearchResults = function (query) {
     });
     $("#content a").first().focus();
   }).catch(function (reason) {
-    $("#content").empty();
-    $("#content").append(reason.responseJSON.message);
+    $("#content").append(`<p class="no-results">${reason.responseJSON.message}</p>`);
   });
 };
 

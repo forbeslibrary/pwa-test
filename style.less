@@ -100,7 +100,6 @@ body {
 }
 
 /*** search ***/
-
 #search-button {
   font-size: 1.25em;
   padding: 0 0.5em;
@@ -113,8 +112,12 @@ body {
   margin: 0;
 }
 
-#search-form:focus-within {
-  @media not all and (min-width: 500px) {
+.no-results {
+  font-weight: bold;
+}
+
+@media not all and (min-width: 500px) {
+  #search-form:focus-within {
     position: absolute;
     top: @header-height;
     height: 5em;
