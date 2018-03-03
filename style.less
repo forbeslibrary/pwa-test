@@ -7,6 +7,7 @@
 @import "style/spinner.less";
 @import "style/menu-hamburger.less";
 
+/*** generic rules ***/
 body {
   font-family: 'Lato', sans-serif;
   font-size: 4vw;
@@ -14,9 +15,16 @@ body {
   margin: 0;
 }
 
+/*** navigation sidebar ***/
 #main-navigation {
+  position: absolute;
+  display: block;
   background-color: white;
   box-shadow: 0 0 0.5em @forbes-red;
+  width: 250px;
+  left: -250px; // the menu is closed by default, so we hide it off screen
+  transition-property: left;
+  transition-duration: 0.25s;
 
   a {
     &:link,
@@ -67,6 +75,23 @@ body {
   }
 }
 
+#navigation-toggle:checked~#main-navigation {
+  left: 0; // open the menu when the toggle is checked
+}
+
+@media (min-width: 1200px) { // the menu is always open on wide screens
+  #navigation-toggle {
+    &~#main-navigation {
+      left: initial;
+    }
+    &~#content {
+      margin-left: 250px; // the menu should not overlap content on wide screens
+    }
+  }
+}
+
+/*** ***/
+
 #top-header {
   z-index: 100;
   position: fixed;
@@ -101,21 +126,6 @@ body {
   transition-duration: 0.25s;
 }
 
-#navigation-toggle~#main-navigation {
-  display: block;
-  position: absolute;
-  width: 250px;
-  left: -250px;
-  transition-property: left;
-  transition-duration: 0.25s;
-}
-
-#navigation-toggle:checked~#main-navigation {
-  display: block;
-  position: absolute;
-  left: 0;
-}
-
 @media (min-width:600px) {
   #navigation-toggle:checked~#content {
     margin-left: 250px;
@@ -135,7 +145,6 @@ body {
   left: -99999px;
 }
 
-/* media queries for responsive design */
 @media (min-width: 400px) {
   body {
     font-size: 16px;
@@ -153,14 +162,6 @@ body {
   }
   #top-header .menu-hamburger {
     display: none;
-  }
-  #navigation-toggle {
-    &~#main-navigation {
-      left: initial;
-    }
-    &~#content {
-      margin-left: 250px;
-    }
   }
 }
 
