@@ -1,0 +1,24 @@
+/**
+ * Draws the classic three bar menu "hamburger"
+ */
+
+.menu-hamburger {
+  position: relative;
+  width: 1;
+  height: 1;
+  display: inline-block;
+  font-size: 1.5em;
+  padding-left: 2em;
+}
+
+.menu-hamburger:before {
+  content: "";
+  position: absolute;
+  top: -0.25em;
+  left: 0;
+  width: 1em;
+  height: 0.125em;
+  border-top: 0.375em double #fff;
+  border-bottom: 0.125em solid #fff;
+  margin: 0 0.5em;
+}

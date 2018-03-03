@@ -8,6 +8,8 @@ var staticFilesForAppShell = [
   homeURL + 'img/coolidge-portrait-small.jpg',
   homeURL + 'img/digital-gallery-button.png',
   homeURL + 'img/logo-250x182.png',
+  homeURL + 'style/spinner.less',
+  homeURL + 'style/menu-hamburger.less',
   homeURL + 'static/home.html',
   'https://fonts.googleapis.com/css?family=Lato',
   'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css',

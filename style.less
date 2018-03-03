@@ -4,7 +4,8 @@
 @header-height: 3em;
 
 /*** imports ***/
-@import "spinner.less";
+@import "style/spinner.less";
+@import "style/menu-hamburger.less";
 
 body {
   font-family: 'Lato', sans-serif;
@@ -13,31 +14,8 @@ body {
   margin: 0;
 }
 
-.menu-hamburger {
-  position: relative;
-  width: 1;
-  height: 1;
-  display: inline-block;
-  font-size: 1.5em;
-  padding-left: 2em;
-}
-
-.menu-hamburger:before {
-  content: "";
-  position: absolute;
-  top: -0.25em;
-  left: 0;
-  width: 1em;
-  height: 0.125em;
-  border-top: 0.375em double #fff;
-  border-bottom: 0.125em solid #fff;
-  margin: 0 0.5em;
-}
-
 #main-navigation {
   background-color: white;
-  border-right: solid @forbes-red 0.2em;
-  border-bottom: solid @forbes-red 0.2em;
   box-shadow: 0 0 0.5em @forbes-red;
 
   a {
@@ -55,6 +33,7 @@ body {
 
   & > ul > li {
     display: block;
+    padding: 0.25em;
     margin: 0;
     font-size: 1.5em;
     border-bottom: double 0.2em @forbes-red;
@@ -74,12 +53,6 @@ body {
         padding: 0.25em 0;
       }
     }
-  }
-
-}
-#main-navigation {
-  ul li {
-    padding: 0.25em;
   }
   #menu-item-coolidge,
   #menu-item-digital-gallery {
