@@ -20,6 +20,7 @@ app.init = function () {
   app.addMenuClickHandler();
   app.addPopStateHandler();
   app.enhanceSearchForm();
+  app.enhanceSidebar();
 
   var acknowledged = window.confirm('This website is a test and a demo and is incomplete. The official Forbes Library website can be found at https://forbeslibrary.org/. Click OK to proceed or CANCEL to be redirect to the offial site.');
   if (!acknowledged) {
@@ -186,6 +187,28 @@ app.enhanceSearchForm = function () {
   $('#search-form').on('focus', function (e) {
     $('#search-box').focus();
     e.preventDefault();
+  });
+};
+
+/**
+ * Improves the sidebar by making it "sticky"
+ */
+app.enhanceSidebar = function () {
+  let lastPosition = $(window).scrollTop();
+  let sidebar = $('#main-navigation');
+  $(window).on('scroll', function (e) {
+    let currentPosition = $(window).scrollTop();
+    let delta = currentPosition - lastPosition;
+    let sidebarBottom = sidebar.offset().top + sidebar.height();
+    let windowBottom = currentPosition + $(window).height();
+    lastPosition = currentPosition;
+
+    if ((delta > 0) && (sidebarBottom < windowBottom)) {
+      $('#main-navigation').css({top: (windowBottom - sidebar.height()) + 'px'});
+    }
+    if ((delta < 0) && (sidebar.offset().top > currentPosition)) {
+      $('#main-navigation').css({top: currentPosition + 'px'});
+    }
   });
 };
 
