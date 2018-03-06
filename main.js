@@ -113,8 +113,23 @@ app.displaySearchResults = function (query) {
     $("#content").append('<h2>Search Results</h2>');
   }).done(function (data) {
     data.forEach(function (post) {
+      let type = '';
+      let typeClass = '';
+      switch (post.type) {
+        case 'lib_databases':
+          type = "Online Resource";
+          typeClass = 'fa fa-fw fa-search';
+          break;
+        case 'staff_picks':
+          type = "Staff Pick";
+          typeClass = 'fa fa-fw fa-star';
+          break;
+      }
       var article = $('<article class="search-result">');
       $(article).append(`<h3><a href="${post.link}">${post.title.rendered}</a></h3>`);
+      if (type) {
+        $(article).append(`<div class="result-type"><i class="${typeClass}"></i>${type}</div>`);
+      }
       $(article).append(`<cite><a href="${post.link}">${post.link}</a></cite>`);
       $(article).append(`<div>${post.excerpt.rendered}</div>`);
       $("#content").append(article);
