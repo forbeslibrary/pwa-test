@@ -196,20 +196,32 @@ app.enhanceSearchForm = function () {
 app.enhanceSidebar = function () {
   let lastPosition = $(window).scrollTop();
   let sidebar = $('#main-navigation');
+  let sidebarInitalTop = sidebar.offset().top;
+
   $(window).on('scroll', function (e) {
     let currentPosition = $(window).scrollTop();
-    let sidebarHeight = sidebar.height();
-    let sidebarTop = sidebar.offset().top;
-    let sidebarBottom = sidebarTop + sidebarHeight;
-    let windowBottom = currentPosition + $(window).height();
     let delta = currentPosition - lastPosition;
     lastPosition = currentPosition;
 
-    if ((delta > 0) && (sidebarBottom < windowBottom)) {
-      $('#main-navigation').css({top: (windowBottom - sidebarHeight) + 'px'});
+    let sidebarBoundingClientRect = sidebar.get(0).getBoundingClientRect();
+    let windowHeight = $(window).height();
+    let sidebarTop = sidebar.offset().top;
+
+    if (delta > 0) {
+      // scrolling down
+      if (sidebarBoundingClientRect.bottom <= windowHeight) {
+        sidebar.css({position: 'fixed', bottom: '0', top: 'initial'});
+      } else if (sidebar.css('position') == 'fixed') {
+        sidebar.css({position: 'absolute', top: sidebarTop, bottom: 'unset'});
+      }
     }
-    if ((delta < 0) && (sidebarTop > currentPosition)) {
-      $('#main-navigation').css({top: currentPosition + 'px'});
+    if (delta < 0) {
+      // scrolling up
+      if (sidebarBoundingClientRect.top >= sidebarInitalTop) {
+        sidebar.css({position: 'fixed', top: sidebarInitalTop, bottom: 'initial'});
+      } else if (sidebar.css('position') == 'fixed') {
+        sidebar.css({position: 'absolute', top: sidebarTop, bottom: 'unset'});
+      }
     }
   });
 };
