@@ -198,7 +198,10 @@ app.enhanceSidebar = function () {
   let sidebar = $('#main-navigation');
   let sidebarInitalTop = sidebar.offset().top;
 
-  $(window).on('scroll', function (e) {
+  $(window).on('scroll', adjustSidebar);
+  $(window).on('resize', adjustSidebar);
+
+  function adjustSidebar(e) {
     let currentPosition = $(window).scrollTop();
     let delta = currentPosition - lastPosition;
     lastPosition = currentPosition;
@@ -207,8 +210,8 @@ app.enhanceSidebar = function () {
     let windowHeight = $(window).height();
     let sidebarTop = sidebar.offset().top;
 
-    if (delta > 0) {
-      // scrolling down
+    if (delta >= 0) {
+      // scrolling down or resizing
       if (sidebar.height() < windowHeight - sidebarInitalTop) {
         sidebar.css({position: 'fixed', top: sidebarInitalTop, bottom: 'initial'});
       } else if (sidebarBoundingClientRect.bottom <= windowHeight) {
@@ -225,7 +228,7 @@ app.enhanceSidebar = function () {
         sidebar.css({position: 'absolute', top: sidebarTop, bottom: 'unset'});
       }
     }
-  });
+  }
 };
 
 /**
