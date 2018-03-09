@@ -209,7 +209,9 @@ app.enhanceSidebar = function () {
 
     if (delta > 0) {
       // scrolling down
-      if (sidebarBoundingClientRect.bottom <= windowHeight) {
+      if (sidebar.height() < windowHeight - sidebarInitalTop) {
+        sidebar.css({position: 'fixed', top: sidebarInitalTop, bottom: 'initial'});
+      } else if (sidebarBoundingClientRect.bottom <= windowHeight) {
         sidebar.css({position: 'fixed', bottom: '0', top: 'initial'});
       } else if (sidebar.css('position') == 'fixed') {
         sidebar.css({position: 'absolute', top: sidebarTop, bottom: 'unset'});
