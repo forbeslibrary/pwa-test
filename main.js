@@ -83,15 +83,38 @@ app.displayStaticFile = function (path) {
 app.displayByPath = function (path) {
   $("#content").empty().append($(`<p class="spinner"> loading: ${path}</p>`));
 
-  $.ajax({
-    url:  wp_server + "wp-json/forbes/v1/path/" + path
-  }).then(function (data) {
+  let requestURL = wp_server + "wp-json/forbes/v1/path/" + path;
+  let cacheSuccess = false;
+  let networkSuccess = false;
+
+  function updatePage (data) {
     document.title = `${data.title.rendered} [Forbes Library]`;
     $("#content").empty();
     $("#content").append($(`<h2>${data.title.rendered}</h2>`));
     $("#content").append(data.content.rendered);
     console.log(data);
-  }).catch(function (reason) {
+  }
+
+  // fetch cached data, if it exists
+  let cacheUpdate = caches.match(requestURL).then(function (data) {
+    if (data) {
+      cacheSuccess = true;
+    }
+    if (data && !networkSuccess) {
+      updatePage(data);
+    }
+  });
+
+  let networkUpdate = $.ajax({
+    url: requestURL
+  }).then(function (data) {
+    networkSuccess = true;
+    if (!cacheSuccess) {
+      updatePage(data);
+    }
+  });
+
+  Promise.all([cacheUpdate, networkUpdate]).catch(function (reason) {
     $("#content").empty();
     $("#content").append(`Failed to fetch the requested data: ${reason.statusText}`);
   });
